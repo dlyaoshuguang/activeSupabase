@@ -1,9 +1,3 @@
-
-// 声明 process 以便 TypeScript 识别（适用于脚本文件）
-declare const process: {
-  env: { [key: string]: string | undefined }
-};
-
 import { createClient } from "@supabase/supabase-js";
 
 // 从环境变量获取 Supabase 配置
@@ -12,11 +6,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   console.error("缺少必要的环境变量");
-  if (typeof process !== 'undefined' && typeof process.exit === 'function') {
-    process.exit(1);
-  } else {
-    throw new Error('缺少必要的环境变量');
-  }
+  process.exit(1);
 }
 
 // 创建 Supabase 客户端
@@ -96,11 +86,7 @@ async function keepAlive() {
   // 只要有一个操作成功就认为保活成功
   if (successCount === 0) {
     console.error("所有保活操作都失败了");
-    if (typeof process !== 'undefined' && typeof process.exit === 'function') {
-      process.exit(1);
-    } else {
-      throw new Error('所有保活操作都失败了');
-    }
+    process.exit(1);
   }
 }
 
@@ -108,15 +94,9 @@ async function keepAlive() {
 keepAlive()
   .then(() => {
     console.log("保活脚本执行成功");
-    if (typeof process !== 'undefined' && typeof process.exit === 'function') {
-      process.exit(0);
-    }
+    process.exit(0);
   })
   .catch((error) => {
     console.error("保活脚本执行失败:", error);
-    if (typeof process !== 'undefined' && typeof process.exit === 'function') {
-      process.exit(1);
-    } else {
-      throw error;
-    }
+    process.exit(1);
   });
