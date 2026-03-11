@@ -26,8 +26,8 @@ jobs:
       
       - name: 执行保活脚本
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.env.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.env.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
         run: bun run scripts/keep-alive.ts
       
       - name: 记录执行时间
