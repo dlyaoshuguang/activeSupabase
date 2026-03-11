@@ -12,6 +12,8 @@ jobs:
   keep-alive:
     runs-on: ubuntu-latest
     environment: production  # 如果使用 environment 保护 secrets
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     
     steps:
       - name: 检出代码
