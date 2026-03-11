@@ -6,7 +6,8 @@ on:
     # UTC 时间 1:00 和 13:00 = 北京时间 9:00 和 21:00
     - cron: '0 1,13 * * *'
   workflow_dispatch: # 允许手动触发
-
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true
 jobs:
   keep-alive:
     runs-on: ubuntu-latest
